@@ -40,31 +40,41 @@ public class MachServlet extends HttpServlet {
 
 		request.setAttribute("comHand", comHand);
 
-
 		String win = (String) request.getAttribute("win");
 		String lose = (String) request.getAttribute("lose");
 		String draw = (String) request.getAttribute("draw");
 
+
+		int o;
+		int p;
+		int q;
+
 		try {
-			win=null;
-		} finally {
-			win = "0";
-		}
-		try {
-			lose=null;
-		} finally {
-			lose = "0";
+			 o = Integer.parseInt(win);
+
+		} catch (NumberFormatException e) {
+			 o = 0;
+
 		}
 
 		try {
-			draw=null;
-		} finally {
-			draw = "0";
+			 p = Integer.parseInt(lose);
+
+		} catch (NumberFormatException e) {
+			 p = 0;
+
 		}
 
-		request.setAttribute("win", win);
-		request.setAttribute("lose", lose);
-		request.setAttribute("draw", draw);
+		try {
+		 q = Integer.parseInt(draw);
+
+		} catch (NumberFormatException e) {
+		 q = 0;
+
+		}
+		request.setAttribute("o", o);
+		request.setAttribute("p", p);
+		request.setAttribute("q", q);
 
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/mach_result.jsp");
 		rd.forward(request, response);
